@@ -10,37 +10,42 @@ from sklearn.metrics import accuracy_score
 
 # implement the RandIndex algorithm
 def RandIndex(assignments, known):
+    TruePositive = 0
+    FalsePositive = 0
+    TrueNegative = 0
+    FalseNegative = 0
 
-    """RandIndex
-        Args:
-            assignments(np.ndarray): n length array Predicted clusters
-            y_pred(np.ndarray): n length array Ground truth labels
+    for i in range(0,len(assignments)):
+        for i in range(i+1,len(assignments)):
+            if(assignments[i] == assignments[j]):
+                if(known[i] == known[j]):
+                    TruePositive = (TruePositive +1)
+                else:
+                    FalsePositive = (FalsePositive +1)
+            else:
+                if(known[i] != known[j]):
+                    TrueNegative = (TrueNegative +1)
+                else:
+                    FalseNegative = (FalseNegative +1)
 
-        Returns:
-            float: RandIndex
-    """
-
-    rand = None
+    rand = (TruePositive + TrueNegative)/(TruePositive + TrueNegative + FalsePositive + FalseNegative)
     return rand
 
-# Implement the purity score
-
+# Method to implement the purity score
 def purity_score(y_pred, y_true):
 
     purity = None
     return purity
 
 
-# Implement the kmeans Clustering algorithm: you can use sklearn library
-
+# Method to implement the kmeans Clustering algorithm 
 def kmeansClustering(X, n_clusters):
 
     y_kmeans = None
     ssd = None
     return y_kmeans, ssd
 
-# Implement the Agglomerative Clustering algorithm: you can use sklearn library
-
+# Method to implement the Agglomerative Clustering algorithm
 def agg_clustering(X,n_clusters ):
 
 
@@ -48,7 +53,7 @@ def agg_clustering(X,n_clusters ):
 
     return y_agg
 
-# Implement the DB_Scan Clustering algorithm: you can use sklearn library
+# Method to implement the DB_Scan Clustering algorithm
 
 def dbscan_cluster(X, eps, min_samples):
 
@@ -58,6 +63,7 @@ def dbscan_cluster(X, eps, min_samples):
 
 
 # Main Method
+
 
 
 """
